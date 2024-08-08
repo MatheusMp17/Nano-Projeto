@@ -6,38 +6,20 @@ package nanoprojetoforca1;
 import java.util.*;
 public class NanoProjetoForca1 {
     public static void main(String[] args) {
-        String asciiArt = "         ==\n" +
-                              "      <^\\()/^>\n" +
-                              "       \\/  \\/\n" +
-                              "        /  \\\n" +
-                              "        `''`";
         Scanner teclado = new Scanner(System.in);
-        BancoDePalavras bancodepalavras = new BancoDePalavras();
+        BancoDePalavras bancoDePalavras = new BancoDePalavras();
         char letra;
         String letraS;
-        Random gerador = new Random();
         String palavraSorteada, palavraJogador = "", palavraTemporaria;
         int quantidadeErros = 0;
-        String personagem = " o\n/|\\\n/ \\";
-        String[] erros = {"\n\n", " o\n\n", " o\n/\n", " o\n/|", " o\n/|\\", " o\n/|\\\n/"};
-        palavraSorteada = bancodepalavras.SelecaoPalavra();
-
-        //bancoPalavras1.get(gerador.nextInt()); // limitar ao tamanho do array list
-
-        //_ _ _ _ _
-        //inicialização da palavra do jogador
+        palavraSorteada = bancoDePalavras.SelecaoPalavra();
+        Personagens personagem = new Personagens();
         for(int l = 0; l < palavraSorteada.length(); l++){
           palavraJogador += "_";
         }
-
         do{
-          System.out.println("------------------------");
-          System.out.println("------------------------");
-          System.out.println("  _____________________");
-          System.out.println(" |\n |\n |\n |\n |\n |\n |\n_|_");
-          System.out.println(erros[quantidadeErros]);
-          System.out.println("_____________________");
-
+            System.out.println(personagem.getForca(quantidadeErros));
+            System.out.println("");
         for(int l = 0; l < palavraJogador.length(); l++){
           System.out.print(palavraJogador.charAt(l) + " ");
         }
@@ -74,19 +56,15 @@ public class NanoProjetoForca1 {
         }while(quantidadeErros < 6 && !palavraJogador.equals(palavraSorteada));
 
         if(quantidadeErros < 6){
-          System.out.println(erros[quantidadeErros]);
-          System.out.println("venceu");
+          System.out.println(personagem.getVitoria());
+          System.out.println("PARAÉNS VOCÊ ESCAPOU DESSA VEZ!!!");
+          System.out.println("APROVEITE O TEMPO QUE AINDA TE RESTA!");
         }
         else{
-          System.out.println("------------------------");
-          System.out.println("------------------------");
-          System.out.println("  _____________________");
-          System.out.println(" |\n |\n |\n |\n |\n |\n |\n_|_");
-          System.out.println(personagem);
-          System.out.println("_____________________");
-          System.out.println("perdeu");
+          System.out.println(personagem.getAnjo());
+          System.out.println(personagem.getForca(quantidadeErros));
           System.out.println(palavraSorteada);
-          System.out.println(asciiArt);
+          System.out.println("VOCÊ PERDEU, TENHA MAIS SORTE NA PROXIMA TENTATIVA");
         }
 
         /*
