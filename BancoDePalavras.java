@@ -14,7 +14,7 @@ import java.util.Random;
 public class BancoDePalavras {
    public static ArrayList<String> bancoPalavras = new ArrayList<String>();
    public static String palavraSelecionada;
-
+   private static String codigo = "";
   // colocar todo o código dos bancos de palavras
   
   private static void inicializarBancoPalavrasPadrao(){
@@ -119,15 +119,27 @@ public class BancoDePalavras {
     bancoPalavras.add("selo");
     bancoPalavras.add("tenda");
   }
-  private static void inicializarBancoPalavraNAOSEI(){
-}
   private static void inicializarBancoPalavrasCodigoDificil(){
-  }
-  public static String SelecaoPalavra(){
       Random gerador = new Random();
-      // Fazer switch case para Selcionar qual banco quero utilizar
-      inicializarBancoPalavrasPadrao();
-      palavraSelecionada = bancoPalavras.get(gerador.nextInt(bancoPalavras.size()));
+      char[] alfabeto = {'a', 'b', 'c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'};
+      for(int x = 0; x < 10; x++){
+          codigo += alfabeto[gerador.nextInt(26)];        
+  }
+  }
+  public static String SelecaoPalavra(String modo){
+      Random gerador = new Random();
+      switch(modo){
+          case "1":
+              inicializarBancoPalavrasPadrao();
+              palavraSelecionada = bancoPalavras.get(gerador.nextInt(bancoPalavras.size()));
+              break;
+          case "2":
+              inicializarBancoPalavrasCodigoDificil();
+              palavraSelecionada = codigo;
+              break;
+          default:
+              palavraSelecionada = "0";
+      }
       return palavraSelecionada;
   }
 }

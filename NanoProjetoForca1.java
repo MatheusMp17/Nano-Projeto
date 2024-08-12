@@ -7,80 +7,53 @@ import java.util.*;
 public class NanoProjetoForca1 {
     public static void main(String[] args) {
         Scanner teclado = new Scanner(System.in);
-        BancoDePalavras bancoDePalavras = new BancoDePalavras();
-        char letra;
-        String letraS;
-        String palavraSorteada, palavraJogador = "", palavraTemporaria;
-        int quantidadeErros = 0;
-        palavraSorteada = bancoDePalavras.SelecaoPalavra();
-        Personagens personagem = new Personagens();
-        for(int l = 0; l < palavraSorteada.length(); l++){
-          palavraJogador += "_";
-        }
+        Jogo jogo = new Jogo();
+        String modoDeJogo;
+        String palavraSorteada = "";
+        System.out.println(""
+                          + "---------------------------------\n"
+                          + " -------------------------------\n "
+                          + "          BEM VINDO\n"
+                          + "               AO\n"
+                          + "          JOGO DA FORCA\n"
+                          + " -------------------------------\n "
+                          + "---------------------------------\n");
         do{
-            System.out.println(personagem.getForca(quantidadeErros));
-            System.out.println("");
-        for(int l = 0; l < palavraJogador.length(); l++){
-          System.out.print(palavraJogador.charAt(l) + " ");
-        }
-
-        System.out.println();
-        System.out.print("Informe uma letra: ");
-        letra = teclado.next().toLowerCase().charAt(0);
-        letraS = "";
-        letraS += letra;
-
-        System.out.println();
-
-        palavraTemporaria = ""; // usada para montar as letras jogadas corretamente
-        if(palavraSorteada.contains(letraS)){
-          for(int l = 0; l < palavraSorteada.length(); l++){
-            if(letra == palavraSorteada.charAt(l)){
-              palavraTemporaria += letra;
+            System.out.println("MODO DE JOGO");
+            System.out.println("(0) SAIR)");
+            System.out.println("(1) Modo facil");
+            System.out.println("(2) Modo Normal");
+            System.out.println("(3) Modo Dificil");
+            System.out.println("(4) Modo Impossivel)");
+            modoDeJogo = teclado.next();
+            switch (modoDeJogo){
+                case "0":
+                    System.out.println("ADEUS");
+                    return;
+                case "1":
+                    jogo.Modo1();
+                    break;
+                case "2":
+                    jogo.Modo2();
+                    break;
+                case "3":
+                    jogo.Modo3();
+                    break;
+                case "4":
+                    jogo.Modo4();
+                    break;
+                default:
+                    System.out.println("INVÁLIDO");
+                    palavraSorteada = "0";     
+            }
+            System.out.print("\nDESEJA JOGAR MAIS UMA VEZ S / N:");
+            modoDeJogo = teclado.next().toUpperCase();
+            if(modoDeJogo.equals("S")){
+                palavraSorteada = "0";
             }
             else{
-              palavraTemporaria += palavraJogador.charAt(l);
+                break;
             }
-          }
-          palavraJogador = palavraTemporaria;
-        }
-        else{
-          //verificar usando o contains(letraS)
-          //contabilizar erro, registrar a letra errada e exibir mensagem
-          //fazer o teste para verificar se a letra já foi jogada.
-          //se não foi
-          quantidadeErros++;
-          //se foi ?????
-        }
-
-        }while(quantidadeErros < 6 && !palavraJogador.equals(palavraSorteada));
-
-        if(quantidadeErros < 6){
-          System.out.println(personagem.getVitoria());
-          System.out.println("PARAÉNS VOCÊ ESCAPOU DESSA VEZ!!!");
-          System.out.println("APROVEITE O TEMPO QUE AINDA TE RESTA!");
-        }
-        else{
-          System.out.println(personagem.getAnjo());
-          System.out.println(personagem.getForca(quantidadeErros));
-          System.out.println(palavraSorteada);
-          System.out.println("VOCÊ PERDEU, TENHA MAIS SORTE NA PROXIMA TENTATIVA");
-        }
-
-        /*
-        letra == s
-        palavraSorteada   == teste
-        palavraJogador    == _____
-        palavraTemporaria == __s__
-        */ 
-
-
-
-
-
-
-        for(int l = 0; l < palavraJogador.length(); l++){
-          System.out.print(palavraJogador.charAt(l) + " ");
-        }
+        }while(palavraSorteada.equals("0"));
     }
-}    
+}
