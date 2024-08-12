@@ -159,7 +159,7 @@ public class Jogo {
         BancoDePalavras bancoDePalavras = new BancoDePalavras();
         char letra;
         String letraS;
-        String palavraSorteada, palavraJogador = "", palavraTemporaria;
+        String palavraSorteada, palavraJogador = "", palavraTemporaria, listaDeUsados = "";
         int quantidadeErros = 0;
         palavraSorteada = bancoDePalavras.SelecaoPalavra("1");
         Personagens personagem = new Personagens();
@@ -169,6 +169,7 @@ public class Jogo {
         do{
             System.out.println(personagem.getForca(quantidadeErros));
             System.out.println("");
+            System.out.println(listaDeUsados);
         for(int l = 0; l < palavraJogador.length(); l++){
           System.out.print(palavraJogador.charAt(l) + " ");
         }
@@ -182,7 +183,10 @@ public class Jogo {
         System.out.println();
 
         palavraTemporaria = ""; // usada para montar as letras jogadas corretamente
-        if(palavraSorteada.contains(letraS)){
+        if(listaDeUsados.contains(letraS)){
+            quantidadeErros++;
+        }
+        else if(palavraSorteada.contains(letraS)){
           for(int l = 0; l < palavraSorteada.length(); l++){
             if(letra == palavraSorteada.charAt(l)){
               palavraTemporaria += letra;
@@ -196,6 +200,8 @@ public class Jogo {
         else{
           quantidadeErros++;
         }
+        if(!listaDeUsados.contains(Character.toString(letra)))
+        listaDeUsados += letra;
         }while(quantidadeErros < 6 && !palavraJogador.equals(palavraSorteada));
 
         if(quantidadeErros < 6){
@@ -218,7 +224,7 @@ public class Jogo {
         BancoDePalavras bancoDePalavras = new BancoDePalavras();
         char letra;
         String letraS;
-        String palavraSorteada, palavraJogador = "", palavraTemporaria;
+        String palavraSorteada, palavraJogador = "", palavraTemporaria, listaDeUsados = "";
         int quantidadeErros = 0;
         palavraSorteada = bancoDePalavras.SelecaoPalavra("2");
         Personagens personagem = new Personagens();
@@ -228,6 +234,7 @@ public class Jogo {
         do{
             System.out.println(personagem.getForca(quantidadeErros));
             System.out.println("");
+            System.out.println(listaDeUsados);
         for(int l = 0; l < palavraJogador.length(); l++){
           System.out.print(palavraJogador.charAt(l) + " ");
         }
@@ -241,7 +248,10 @@ public class Jogo {
         System.out.println();
 
         palavraTemporaria = ""; // usada para montar as letras jogadas corretamente
-        if(palavraSorteada.contains(letraS)){
+        if(listaDeUsados.contains(letraS)){
+            quantidadeErros++;
+        }
+        else if(palavraSorteada.contains(letraS)){
           for(int l = 0; l < palavraSorteada.length(); l++){
             if(letra == palavraSorteada.charAt(l)){
               palavraTemporaria += letra;
@@ -255,6 +265,8 @@ public class Jogo {
         else{
           quantidadeErros++;
         }
+        if(!listaDeUsados.contains(Character.toString(letra)))
+        listaDeUsados += letra;
         }while(quantidadeErros < 6 && !palavraJogador.equals(palavraSorteada));
 
         if(quantidadeErros < 6){
